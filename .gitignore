@@ -1,0 +1,37 @@
+# === Backend (Spring Boot / Java) ===
+/backend/target/
+**/target/
+/backend/.idea/
+/backend/*.iml
+/backend/.classpath
+/backend/.project
+/backend/.settings/
+/backend/out/
+/backend/logs/
+/backend/*.log
+/backend/*.jar
+/backend/.mvn/wrapper/maven-wrapper.jar
+
+# === Frontend (Angular / Node.js) ===
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/
+/frontend/.vscode/
+/frontend/npm-debug.log*
+/frontend/yarn-error.log*
+
+# === Docker ===
+/docker/mysql-data/
+
+# === Sistema operacional ===
+.DS_Store
+Thumbs.db
+
+# === IDEs e editores ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Outros arquivos de log ou temporários ===
+*.log
