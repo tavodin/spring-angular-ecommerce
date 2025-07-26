@@ -1,8 +1,6 @@
 package io.github.tavodin.ecommerce.dto;
 
 import io.github.tavodin.ecommerce.entities.Product;
-import org.springframework.beans.BeanUtils;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
