@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public class ProductDTO {
 
     private Long id;
+    private String name;
     private String sku;
     private String description;
     private BigDecimal unitPrice;
@@ -21,6 +22,7 @@ public class ProductDTO {
 
     public ProductDTO(Product p) {
         this.id = p.getId();
+        this.name = p.getName();
         this.sku = p.getSku();
         this.description = p.getDescription();
         this.unitPrice = p.getUnitPrice();
@@ -33,6 +35,10 @@ public class ProductDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getSku() {
