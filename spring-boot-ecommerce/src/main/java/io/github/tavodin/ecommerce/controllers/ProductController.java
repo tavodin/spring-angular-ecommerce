@@ -4,10 +4,7 @@ import io.github.tavodin.ecommerce.dto.ProductDTO;
 import io.github.tavodin.ecommerce.services.ProductService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/products")
@@ -27,5 +24,12 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductDTO findByProductId(@PathVariable Long id) {
         return service.findByProductId(id);
+    }
+
+    @GetMapping("/search/findByCategoryId")
+    public PagedModel<ProductDTO> findProductsByCategoryId(
+            @RequestParam(name = "id", defaultValue = "1") Long id,
+            Pageable pageable) {
+        return service.findProductsByCategoryId(id, pageable);
     }
 }
