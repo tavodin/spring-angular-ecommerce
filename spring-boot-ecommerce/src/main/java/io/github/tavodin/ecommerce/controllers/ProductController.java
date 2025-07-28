@@ -33,4 +33,11 @@ public class ProductController {
             Pageable pageable) {
         return service.findProductsByCategoryId(id, pageable);
     }
+
+    @GetMapping("/search/findByNameContaining")
+    public PagedModel<ProductCardDTO> findProductsByCategoryId(
+            @RequestParam(name = "name", defaultValue = "Python") String name,
+            Pageable pageable) {
+        return service.findProductsByName(name, pageable);
+    }
 }

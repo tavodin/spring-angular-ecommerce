@@ -37,4 +37,10 @@ public class ProductService {
         Page<ProductCardDTO> productPaged = repository.findProductCardByCategoryId(id, pageable);
         return new PagedModel<>(productPaged);
     }
+
+    @Transactional(readOnly = true)
+    public PagedModel<ProductCardDTO> findProductsByName(String name, Pageable pageable) {
+        Page<ProductCardDTO> productPaged = repository.findProductCardByName(name, pageable);
+        return new PagedModel<>(productPaged);
+    }
 }

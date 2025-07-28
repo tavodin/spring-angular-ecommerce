@@ -21,4 +21,16 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE p.category.id = :id
             """)
     Page<ProductCardDTO> findProductCardByCategoryId(@Param("id") Long id, Pageable pageable);
+
+    @Query(value = """
+            SELECT new io.github.tavodin.ecommerce.dto.ProductCardDTO(p.id, p.name, p.imageUrl, p.unitPrice)
+            From Product p
+            WHERE p.name LIKE CONCAT('%', :name, '%')
+            """,
+            countQuery = """
+            SELECT COUNT(p)
+            FROM Product p
+            WHERE p.name LIKE CONCAT('%', :name, '%')
+            """)
+    Page<ProductCardDTO> findProductCardByName(@Param("name") String name, Pageable pageable);
 }
