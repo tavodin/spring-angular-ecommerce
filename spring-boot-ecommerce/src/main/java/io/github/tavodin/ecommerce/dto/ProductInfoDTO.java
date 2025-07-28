@@ -4,7 +4,7 @@ import io.github.tavodin.ecommerce.entities.Product;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class ProductDTO {
+public class ProductInfoDTO {
 
     private Long id;
     private String name;
@@ -17,10 +17,23 @@ public class ProductDTO {
     private LocalDateTime dateCreated;
     private LocalDateTime lastUpdated;
 
-    public ProductDTO() {
+    public ProductInfoDTO() {
     }
 
-    public ProductDTO(Product p) {
+    public ProductInfoDTO(Long id, String name, String sku, String description, BigDecimal unitPrice, String imageUrl, boolean active, int unitsInStock, LocalDateTime dateCreated, LocalDateTime lastUpdated) {
+        this.id = id;
+        this.name = name;
+        this.sku = sku;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.imageUrl = imageUrl;
+        this.active = active;
+        this.unitsInStock = unitsInStock;
+        this.dateCreated = dateCreated;
+        this.lastUpdated = lastUpdated;
+    }
+
+    public ProductInfoDTO(Product p) {
         this.id = p.getId();
         this.name = p.getName();
         this.sku = p.getSku();

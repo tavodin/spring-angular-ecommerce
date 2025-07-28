@@ -1,7 +1,7 @@
 package io.github.tavodin.ecommerce.services;
 
 import io.github.tavodin.ecommerce.dto.ProductCardDTO;
-import io.github.tavodin.ecommerce.dto.ProductDTO;
+import io.github.tavodin.ecommerce.dto.ProductInfoDTO;
 import io.github.tavodin.ecommerce.exceptions.ResourceNotFoundException;
 import io.github.tavodin.ecommerce.repositories.ProductRepository;
 import org.springframework.data.domain.Page;
@@ -20,15 +20,14 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public PagedModel<ProductDTO> findAllProducts(Pageable pageable) {
-        Page<ProductDTO> productPaged = repository.findAll(pageable).map(ProductDTO::new);
+    public PagedModel<ProductInfoDTO> findAllProducts(Pageable pageable) {
+        Page<ProductInfoDTO> productPaged = repository.findAll(pageable).map(ProductInfoDTO::new);
         return new PagedModel<>(productPaged);
     }
 
     @Transactional(readOnly = true)
-    public ProductDTO findByProductId(Long id) {
-        return repository.findById(id)
-                .map(ProductDTO::new)
+    public ProductInfoDTO findByProductId(Long id) {
+        return repository.findByIdWithNoCategory(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 

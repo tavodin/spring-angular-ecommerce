@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { IPaginatedResponse } from '../interfaces/paginatedreponse.interface';
 import { IProductCategory } from '../interfaces/product-category.inteface';
-import { Product } from '../common/product';
 import { IProductCard } from '../interfaces/product-card.inteface';
+import { IProductInfo } from '../interfaces/product-info.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +34,11 @@ export class ProductService {
       .get<IPaginatedResponse<IProductCard>>(searchUrl).pipe(
         map(res => res.content)
       );
+  }
+
+  getProductById(productId: number): Observable<IProductInfo> {
+    const url = `${this.baseUrl}/products/${productId}`;
+
+    return this.httpClient.get<IProductInfo>(url);
   }
 }
