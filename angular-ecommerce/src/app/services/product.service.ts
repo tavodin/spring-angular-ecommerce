@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IProduct } from '../interfaces/product.interface';
 import { IPaginatedResponse } from '../interfaces/paginatedreponse.interface';
 import { IProductCategory } from '../interfaces/product-category.inteface';
+import { Product } from '../common/product';
+import { IProductCard } from '../interfaces/product-card.inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,24 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductList(categoryId: number): Observable<IProduct[]> {
+  getProductList(categoryId: number): Observable<IProductCard[]> {
     const searchUrl = `${this.baseUrl}/products/search/findByCategoryId?id=${categoryId}`;
 
-    return this.httpClient.get<IPaginatedResponse<IProduct>>(searchUrl).pipe(
+    return this.httpClient.get<IPaginatedResponse<IProductCard>>(searchUrl).pipe(
       map(res => res.content)
     );
   }
 
   getProductCategories(): Observable<IProductCategory[]> {
     return this.httpClient.get<IProductCategory[]>(this.baseUrl + "/product-categories");
+  }
+
+  searchProducts(theKeyword: string): Observable<IProductCard[]> {
+    const searchUrl = `${this.baseUrl}/products/search/findByNameContaining?name=${theKeyword}`;
+    
+    return this.httpClient
+      .get<IPaginatedResponse<IProductCard>>(searchUrl).pipe(
+        map(res => res.content)
+      );
   }
 }
