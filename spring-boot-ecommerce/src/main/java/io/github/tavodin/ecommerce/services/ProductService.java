@@ -1,5 +1,6 @@
 package io.github.tavodin.ecommerce.services;
 
+import io.github.tavodin.ecommerce.dto.ProductCardDTO;
 import io.github.tavodin.ecommerce.dto.ProductDTO;
 import io.github.tavodin.ecommerce.exceptions.ResourceNotFoundException;
 import io.github.tavodin.ecommerce.repositories.ProductRepository;
@@ -32,8 +33,8 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public PagedModel<ProductDTO> findProductsByCategoryId(Long id, Pageable pageable) {
-        Page<ProductDTO> productPaged = repository.findByCategory_Id(id, pageable).map(ProductDTO::new);
+    public PagedModel<ProductCardDTO> findProductsByCategoryId(Long id, Pageable pageable) {
+        Page<ProductCardDTO> productPaged = repository.findProductCardByCategoryId(id, pageable);
         return new PagedModel<>(productPaged);
     }
 }

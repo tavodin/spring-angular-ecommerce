@@ -1,9 +1,6 @@
-export interface PaginatedResponse<T> {
+import { IPage } from "./page.inteface";
+
+export interface IPaginatedResponse<T> {
   content: T[];
-  page: {
-    size: number;
-    number: number;
-    totalElements: number;
-    totalPages: number;
-  };
+  page: IPage
 }

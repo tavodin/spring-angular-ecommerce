@@ -1,5 +1,6 @@
 package io.github.tavodin.ecommerce.controllers;
 
+import io.github.tavodin.ecommerce.dto.ProductCardDTO;
 import io.github.tavodin.ecommerce.dto.ProductDTO;
 import io.github.tavodin.ecommerce.services.ProductService;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("/search/findByCategoryId")
-    public PagedModel<ProductDTO> findProductsByCategoryId(
+    public PagedModel<ProductCardDTO> findProductsByCategoryId(
             @RequestParam(name = "id", defaultValue = "1") Long id,
             Pageable pageable) {
         return service.findProductsByCategoryId(id, pageable);
