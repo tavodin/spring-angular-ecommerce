@@ -3,21 +3,26 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { IProduct } from '../interfaces/product.interface';
 import { IPaginatedResponse } from '../interfaces/paginatedreponse.interface';
+import { IProductCategory } from '../interfaces/product-category.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/products';
+  private baseUrl = 'http://localhost:8080/api/v1';
 
   constructor(private httpClient: HttpClient) { }
 
   getProductList(categoryId: number): Observable<IProduct[]> {
-    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}`;
+    const searchUrl = `${this.baseUrl}/products/search/findByCategoryId?id=${categoryId}`;
 
     return this.httpClient.get<IPaginatedResponse<IProduct>>(searchUrl).pipe(
       map(res => res.content)
     );
+  }
+
+  getProductCategories(): Observable<IProductCategory[]> {
+    return this.httpClient.get<IProductCategory[]>(this.baseUrl + "/product-categories");
   }
 }
